@@ -1,4 +1,6 @@
-## Hi there 👋
+## Hello!
+
+I am a data scientist with an interest in improving understanding of Earth system processes and restoring ecosystems. My research focus is climate-informed modeling for water and ecosystem management with a particular emphasis on applied solutions in mitigating the impacts of hydroclimate variability. I enjoy exploring my local riparian forest and serve as a water quality monitor for the American River Conservancy, collecting hydrological data in the Cosumnes River Watershed by recording field measurements, documenting habitat conditions, and observing species including endangered and at risk species in the western Sierra river.
 
 <!--
 **lauren-alexandra/lauren-alexandra** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
