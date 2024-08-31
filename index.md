@@ -7,7 +7,7 @@ Hello! I am a data scientist at Pacific Northwest National Laboratory based in S
 ### Contact
 <ul>
   <li>
-    <a "mailto: lauren@laurenalexandra.io">
+    <a href="mailto: lauren@laurenalexandra.io">
       lauren@laurenalexandra.io
     </a> 
   </li>
