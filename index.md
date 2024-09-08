@@ -5,9 +5,9 @@ Hello! I am a data scientist at Pacific Northwest National Laboratory based in S
 <div style="margin-bottom: 30px; margin-left: 70px;">
   <img width="250" height="400" alt="lauren-alexandra-profile" src="https://github.com/user-attachments/assets/573f8477-f323-444a-95d8-a184bdec31ab">
 </div>
-<div style="margin-bottom: 20px;>
-  <embed type="text/html" src="eldorado_forest.html" width="495" height="480">
-</div>
+<embed type="text/html" src="eldorado_forest.html" width="495" height="480">
+<br>
+<br>
 
 ## Contact
 <ul>
