@@ -7,6 +7,10 @@ Hello! I am a data scientist at Pacific Northwest National Laboratory based in S
 </div>
 <embed type="text/html" src="eldorado_forest.html" width="495" height="480">
 <br>
+<p>
+The <a href="https://www.fs.usda.gov/eldorado" target="_blank" style="text-decoration-line: none; color: black">Eldorado National Forest</a> is located in the central Sierra Nevada within the ancestral and unceded territories of the Miwok, Washoe, Nisenan, and Cayuse, Umatilla and Walla Walla peoples. Eldorado spans 793,652 acres ranging in elevation from 1,000 feet in the foothills to more than 10,000 feet above sea level and is crossed by the Mokelumne, Cosumnes, American, and Rubicon rivers. The map highlights the forest boundary identified by the USDA-Forest Service, Pacific Southwest Region. Source: US Forest Service.
+</p>
+<br>
 <br>
 
 ## Contact
