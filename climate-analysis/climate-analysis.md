@@ -431,13 +431,7 @@ The data was accessed from a National Centers for Environmental Information [API
 </table>
 </div>
 
-
-
-
-    
-![png](climate-analysis_files/climate-analysis_12_0.png)
-    
-
+![png](slt-obs-precip-2022-2023.png)
 
 #### High Year-to-Year Precipitation Variability
 
