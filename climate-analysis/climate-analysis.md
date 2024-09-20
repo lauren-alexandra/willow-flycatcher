@@ -93,15 +93,19 @@ slt_month_precip_avg = slt_daily_precip.groupby(by=["MONTH", "YEAR"]).mean()
 ```python
 # Create annual precipitation plot
 
-sns.lineplot(data=slt_month_precip_avg, x="MONTH", y="PRCP", hue="YEAR", style="YEAR", palette=['darkblue', 'g'])
-
+fig = plt.figure(figsize=(10, 6)) 
+ax = plt.axes()
 plt.title('Lake Tahoe Average Annual Precipitation (Inches)')
+plt.legend(loc='upper right')
 plt.xlabel("Month")
 plt.ylabel("Precipitation")
-plt.legend(loc='upper right')
+plt.xticks([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+           ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'])
 
-plt.savefig("lt-obs-precip-2022-2023.png") 
-plt.show()
+sns.lineplot(data=slt_month_precip_avg, x="MONTH", y="PRCP", hue="YEAR", style="YEAR", palette=['darkblue', 'g'])
+
+fig.savefig("lt-avg-precip-2022-2023.png") 
+fig.show()
 ```
 
 ### High Year-to-Year Precipitation Variability
