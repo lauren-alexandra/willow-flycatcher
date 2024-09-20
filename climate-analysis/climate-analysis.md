@@ -103,9 +103,7 @@ plt.xticks([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
            ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'])
 
 sns.lineplot(data=slt_month_precip_avg, x="MONTH", y="PRCP", hue="YEAR", style="YEAR", palette=['darkblue', 'g'])
-
 fig.savefig("lt-avg-precip-2022-2023.png") 
-fig.show()
 ```
 
 ### High Year-to-Year Precipitation Variability
