@@ -18,6 +18,12 @@ Menne, Matthew J., Imke Durre, Bryant Korzeniewski, Shelley McNeill, Kristy Thom
 
 The data was accessed from a National Centers for Environmental Information [API service](https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation) and queried for the precipitation data type, station, and date range of 01-01-2022 to 12-31-2023. This range was chosen to gather full water years for comparison; the station began observing precipitation in late 2021. The CSV data file was ingested using the [pandas](https://pandas.pydata.org/) library and the date records were converted to a pandas datetime object. Using these datetimes, month and year data were generated. Next the data was subset to precipitation, month, and year, and grouped by the month and year average observed precipitation value. Some months contained sparse daily records and the averages identified reflect this limitation. Finally, visualization libraries [Matplotlib](https://matplotlib.org/) and [Seaborn](https://seaborn.pydata.org/) were used to plot and display the relationship between month and precipitation across annual groupings.  
 
+#### Analysis 
+
+```
+add analysis code here
+```
+
 #### High Year-to-Year Precipitation Variability
 
 ![png](slt-obs-precip-2022-2023.png)
