@@ -2,7 +2,7 @@
 
 [Lake Tahoe](https://www.fs.usda.gov/main/ltbmu/about-forest/about-area) was selected to highlight trends in Sierra Nevada precipitation. The mountain range functions as a collection of moisture islands. The range forms barriers to incoming weather systems so that air and moisture are lifted over them, condensing the moisture which falls as precipitation to build thick snowpacks. Given the high precipitation and low evapotranspiration, the [Sierra](https://www.fs.usda.gov/psw/publications/documents/psw_gtr272/psw_gtr272_013.pdf) produces most of the runoff forming my state's water supply. 
 
-#### Site: SOUTH LAKE TAHOE 1.4 ESE, CA US
+#### Site: SOUTH LAKE TAHOE, CA, US
 
 <img src="south_lake_tahoe_station.png" alt="South Lake Tahoe Station" width="350px" height="420px">
 
