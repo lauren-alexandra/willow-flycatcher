@@ -96,7 +96,7 @@ slt_month_precip_avg = slt_daily_precip.groupby(by=["MONTH", "YEAR"]).mean()
 fig = plt.figure(figsize=(10, 6)) 
 ax = plt.axes()
 plt.title('Lake Tahoe Average Annual Precipitation (Inches)')
-plt.legend(loc='upper right')
+plt.legend([2022, 2023], loc='upper right')
 plt.xlabel("Month")
 plt.ylabel("Precipitation")
 plt.xticks([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
