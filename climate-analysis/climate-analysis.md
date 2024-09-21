@@ -16,7 +16,7 @@ Menne, Matthew J., Imke Durre, Bryant Korzeniewski, Shelley McNeill, Kristy Thom
 
 #### Methods
 
-The data was accessed from a National Centers for Environmental Information [API service](https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation) and queried for the precipitation data type, station, and date range of 01-01-2022 to 12-31-2023. This range was chosen to gather full water years for comparison; the station began observing precipitation in late 2021. The CSV data file was ingested using the [pandas](https://pandas.pydata.org/) library and the date records were converted to a pandas datetime object. Using these datetimes, month and year data were generated. Next the data was subset to precipitation, month, and year, and grouped by the month and year average observed precipitation value. Some months contained sparse daily records and the averages identified reflect this limitation. Finally, visualization libraries [Matplotlib](https://matplotlib.org/) and [Seaborn](https://seaborn.pydata.org/) were used to plot and display the relationship between month and precipitation across annual groupings.  
+The data was accessed from a National Centers for Environmental Information [API service](https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation) and queried for the precipitation data type, station, and date range of 01-01-2022 to 12-31-2023. This range was chosen to gather full water years for comparison; the station began observing precipitation in late 2021. The CSV data file was ingested using the [pandas](https://pandas.pydata.org/) library and the date records were converted to a pandas datetime object. Using these datetimes, month, year, and season data were generated. Next the data was subset to precipitation, month, year, and season, and grouped by the average observed precipitation value. Some months contained sparse daily records and the averages identified reflect this limitation. Finally, visualization libraries [Matplotlib](https://matplotlib.org/) and [Seaborn](https://seaborn.pydata.org/) were used to plot and display the relationship between month and precipitation across annual groupings.  
 
 #### Analysis 
 
@@ -38,9 +38,12 @@ slt_daily_precip = pd.read_csv(SLT_DAILY_PREP_URL)
 ```
 
 ```python
-# Add months and years to dataframe
+# Add months, years, and seasons to dataframe
 
 def create_dataframe_calendar_cols(df):
+    season_by_month = {1: 'Winter', 2: 'Winter', 3: 'Spring', 4: 'Spring', 5: 'Spring', 6: 'Summer', 
+                       7: 'Summer', 8: 'Summer', 9: 'Autumn', 10: 'Autumn', 11: 'Autumn', 12: 'Winter'}
+
     # get the pandas datetime from DATE col 
     df['DATE'] = pd.to_datetime(df['DATE'])
 
@@ -51,6 +54,9 @@ def create_dataframe_calendar_cols(df):
     # get year 
     df['YEAR'] = df['DATE'].dt.year
     df['YEAR'].astype('int')
+
+    # get season
+    df['SEASON'] = df['MONTH'].map(lambda month: season_by_month[month])
 
     return df
 ```
@@ -81,17 +87,27 @@ slt_daily_precip.PRCP = slt_daily_precip.PRCP.apply(convert_to_inches)
 ```python
 # Subset the columns of interest
 
-slt_daily_precip = slt_daily_precip.loc[:, ['PRCP', 'MONTH', 'YEAR']]
+slt_daily_precip = slt_daily_precip.loc[:, ['PRCP', 'MONTH', 'YEAR', 'SEASON']]
 ```
 
 ```python
-# Group months by their mean observed precipitation value
+# Group by mean observed precipitation value
 
-slt_month_precip_avg = slt_daily_precip.groupby(by=["MONTH", "YEAR"]).mean() 
+slt_month_precip_avg = slt_daily_precip.groupby(by=["MONTH", "YEAR", "SEASON"]).mean() 
 ```
 
 ```python
-# Create annual precipitation plot
+# Plot seasonal precipitation across years
+
+p = so.Plot(slt_month_precip_avg, x="MONTH", y="PRCP", color="SEASON").add(so.Bar()).layout(size=(8, 6)).label(
+            x="Month", y="Precipitation"
+        )
+
+p.label(title='Lake Tahoe Seasonal Precipitation 2022-2023 (Inches)')
+```
+
+```python
+# Plot annual precipitation
 
 fig = plt.figure(figsize=(10, 6)) 
 ax = plt.axes()
@@ -110,6 +126,6 @@ fig.savefig("lt-avg-precip-2022-2023.png")
 
 ![png](lt-avg-precip-2022-2023.png)
 
-The Sierra Nevada mountains receive most of their precipitation during a short wet period consisting of fix to six [atmospheric river storms](https://www.noaa.gov/stories/what-are-atmospheric-rivers) on average with great annual variability. A difference of one to two major storms can ensure a normal versus a dry water year. The above graph highlights the annual variance in precipitation with notable shifts in the early months when it is optimal for precipitation to fall as snow rather than rain, supporting longer streamflows later in the summer when demand is high. The majority of precipitation is expected between December through March, but [warmer temperatures](https://www.fs.usda.gov/psw/publications/documents/psw_gtr272/psw_gtr272_013.pdf) influence whether or not precipitation falls as snow. 
+The Sierra Nevada mountains receive most of their precipitation during a short wet period consisting of fix to six [atmospheric river storms](https://www.noaa.gov/stories/what-are-atmospheric-rivers) on average with great annual variability. A difference of one to two major storms can ensure a normal versus a dry water year. The above graphs highlight the annual variance in precipitation with notable shifts in the early months when it is optimal for precipitation to fall as snow rather than rain, supporting longer streamflows later in the summer when demand is high. The majority of precipitation is expected between [December through February](https://oehha.ca.gov/climate-change/epic-2022/changes-climate/precipitation#:~:text=California%20receives%20about%2075%20percent,information%2C%20download%20the%20Precipitation%20chapter.), but [warmer temperatures](https://www.fs.usda.gov/psw/publications/documents/psw_gtr272/psw_gtr272_013.pdf) influence whether or not precipitation falls as snow. 
 
 Atmospheric rivers are often associated with [flood risk](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2020GL088679) and are especially risky depending on when they occur. For instance, one of these events occurred in March 2023 (averaging 6 inches of precipitation) and in preparation for the event, the [City of South Lake Tahoe](https://sierranevadaalliance.org/city-of-south-lake-tahoe-urges-residents-to-prepare-for-impacts-of-rain-on-snow-event/) communicated the danger to local residents: "The potential of heavy rainfall across the region brings the threat of flooding and roof collapses. Flooding may occur as a result of rain on existing snow and ice on the ground, and streams and river basins that are already elevated after numerous storms." Atmospheric rivers are a natural component of Sierra hydrology and [provide about 60% of the state's developed water](https://sierranevada.ca.gov/what-we-do/#regionalChallenges), but they are expected to become more extreme under climate change with [projected precipitation](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2019JD031554) increasing 25% on average. How the state and stewards of the Sierra Nevada respond to shifts in precipitation will largely shape California's future resiliency. 
