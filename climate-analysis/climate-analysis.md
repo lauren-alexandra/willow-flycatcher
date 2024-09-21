@@ -100,11 +100,12 @@ slt_month_precip_avg = slt_daily_precip.groupby(by=["MONTH", "YEAR", "SEASON"]).
 # Plot seasonal precipitation across years
 
 p = so.Plot(slt_month_precip_avg, x="MONTH", y="PRCP", color="SEASON").add(so.Bar()).layout(size=(8, 6)).label(
-            x="Month", y="Precipitation"
-        )
+            x="Month", y="Precipitation")
 
 p.label(title='Lake Tahoe Seasonal Precipitation 2022-2023 (Inches)')
 ```
+
+![png](lt-seasonal-precip-2022-2023.png)
 
 ```python
 # Plot annual precipitation
@@ -122,9 +123,9 @@ sns.lineplot(data=slt_month_precip_avg, x="MONTH", y="PRCP", hue="YEAR", style="
 fig.savefig("lt-avg-precip-2022-2023.png") 
 ```
 
-### High Year-to-Year Precipitation Variability
-
 ![png](lt-avg-precip-2022-2023.png)
+
+### High Year-to-Year Precipitation Variability
 
 The Sierra Nevada mountains receive most of their precipitation during a short wet period consisting of fix to six [atmospheric river storms](https://www.noaa.gov/stories/what-are-atmospheric-rivers) on average with great annual variability. A difference of one to two major storms can ensure a normal versus a dry water year. The above graphs highlight the annual variance in precipitation with notable shifts in the early months when it is optimal for precipitation to fall as snow rather than rain, supporting longer streamflows later in the summer when demand is high. The majority of precipitation is expected between [December through February](https://oehha.ca.gov/climate-change/epic-2022/changes-climate/precipitation#:~:text=California%20receives%20about%2075%20percent,information%2C%20download%20the%20Precipitation%20chapter.), but [warmer temperatures](https://www.fs.usda.gov/psw/publications/documents/psw_gtr272/psw_gtr272_013.pdf) influence whether or not precipitation falls as snow. 
 
