@@ -131,3 +131,28 @@ fig.savefig("lt-avg-precip-2022-2023.png")
 The Sierra Nevada mountains receive most of their precipitation during a short wet period consisting of fix to six [atmospheric river storms](https://www.noaa.gov/stories/what-are-atmospheric-rivers) on average with great annual variability. A difference of one to two major storms can ensure a normal versus a dry water year. The above graphs highlight the annual variance in precipitation with notable shifts in the early months when it is optimal for precipitation to fall as snow rather than rain, supporting longer streamflows later in the summer when demand is high. The majority of precipitation is expected between [December through February](https://oehha.ca.gov/climate-change/epic-2022/changes-climate/precipitation#:~:text=California%20receives%20about%2075%20percent,information%2C%20download%20the%20Precipitation%20chapter.), but [warmer temperatures](https://www.fs.usda.gov/psw/publications/documents/psw_gtr272/psw_gtr272_013.pdf) influence whether or not precipitation falls as snow. 
 
 Atmospheric rivers are often associated with [flood risk](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2020GL088679) and are especially risky depending on when they occur. For instance, one of these events occurred in March 2023 (averaging 6 inches of precipitation) and in preparation for the event, the [City of South Lake Tahoe](https://sierranevadaalliance.org/city-of-south-lake-tahoe-urges-residents-to-prepare-for-impacts-of-rain-on-snow-event/) communicated the danger to local residents: "The potential of heavy rainfall across the region brings the threat of flooding and roof collapses. Flooding may occur as a result of rain on existing snow and ice on the ground, and streams and river basins that are already elevated after numerous storms." Atmospheric rivers are a natural component of Sierra hydrology and [provide about 60% of the state's developed water](https://sierranevada.ca.gov/what-we-do/#regionalChallenges), but they are expected to become more extreme under climate change with [projected precipitation](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2019JD031554) increasing 25% on average. How the state and stewards of the Sierra Nevada respond to shifts in precipitation will largely shape California's future resiliency. 
+
+#### References
+
+Baker, L. N. (2023, March 7). *City of South Lake Tahoe urges residents to prepare for impacts of rain-on-snow event.* Sierra Nevada Alliance. https://sierranevadaalliance.org/city-of-south-lake-tahoe-urges-residents-to-prepare-for-impacts-of-rain-on-snow-event 
+
+California Office of Environmental Health Hazard Assessment. (2024, July 1). *Precipitation.* https://oehha.ca.gov/climate-change/epic-2022/changes-climate/precipitation#:~:text=California%20receives%20about%2075%20percent,information%2C%20download%20the%20Precipitation%20chapter 
+
+Halofsky, J. E., Peterson, D. L., Buluç, L. Y., & Ko, J. M. (2021). *Climate change vulnerability and adaptation for infrastructure and recreation in the Sierra Nevada.* U.S. Department of Agriculture, Forest Service, Pacific Southwest Research Station. https://doi.org/10.2737/PSW-GTR-272 
+
+Huang, X., Swain, D. L., Walton, D. B., Stevenson, S., & Hall, A. D. (2020, January 29). Simulating and evaluating atmospheric river-induced precipitation extremes along the U.S. Pacific Coast: Case studies from 1980-2017. *Journal of Geophysical Research: Atmospheres, 125*(4). https://doi.org/10.1029/2019JD031554 
+
+Lake Tahoe Basin Management Unit. (n.d.). *About the area.* U.S. Forest Service. https://www.fs.usda.gov/main/ltbmu/about-forest/about-area 
+
+Matplotlib. (n.d.). *API reference.* https://matplotlib.org/stable/api/index 
+
+pandas. (n.d.). *pandas documentation.* https://pandas.pydata.org/docs 
+
+National Centers for Environmental Information. (n.d.). *Global historical climatology network daily.* https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/doc/GHCND_documentation.pdf
+
+NOAA. (2023, March 31). *What are atmospheric rivers?* https://www.noaa.gov/stories/what-are-atmospheric-rivers 
+
+Seaborn. (n.d.). *API reference.* https://seaborn.pydata.org/api.html 
+
+Sierra Nevada Conservancy. (n.d.). *Sierra Nevada Watershed Improvement Program (WIP).* https://sierranevada.ca.gov/what-we-do/#regionalChallenges  
+
