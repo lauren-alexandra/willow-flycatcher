@@ -148,7 +148,7 @@ Matplotlib. (n.d.). *API reference.* https://matplotlib.org/stable/api/index
 
 pandas. (n.d.). *pandas documentation.* https://pandas.pydata.org/docs 
 
-National Centers for Environmental Information. (n.d.). *Global historical climatology network daily.* https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/doc/GHCND_documentation.pdf
+National Centers for Environmental Information. (n.d.). *Global Historical Climatology Network Daily.* https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/doc/GHCND_documentation.pdf
 
 NOAA. (2023, March 31). *What are atmospheric rivers?* https://www.noaa.gov/stories/what-are-atmospheric-rivers 
 
