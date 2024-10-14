@@ -142,7 +142,7 @@ Halofsky, J. E., Peterson, D. L., Buluç, L. Y., & Ko, J. M. (2021). *Climate ch
 
 Huang, X., Swain, D. L., Walton, D. B., Stevenson, S., & Hall, A. D. (2020, January 29). Simulating and evaluating atmospheric river-induced precipitation extremes along the U.S. Pacific Coast: Case studies from 1980-2017. *Journal of Geophysical Research: Atmospheres, 125*(4). https://doi.org/10.1029/2019JD031554 
 
-Hunter, J. D. (2024). *Matplotlib: A 2D graphics environment* (Version 3.9.2) [Software]. Zenodo. https://zenodo.org/records/13308876
+Hunter, J. D. (2024). *Matplotlib: A 2D graphics environment* (Version 3.9.2) [Computer software]. Zenodo. https://zenodo.org/records/13308876
 
 Lake Tahoe Basin Management Unit. (n.d.). *About the area.* U.S. Forest Service. https://www.fs.usda.gov/main/ltbmu/about-forest/about-area 
 
@@ -152,6 +152,6 @@ NOAA. (2023, March 31). *What are atmospheric rivers?* https://www.noaa.gov/stor
 
 Sierra Nevada Conservancy. (n.d.). *Sierra Nevada Watershed Improvement Program (WIP).* https://sierranevada.ca.gov/what-we-do/#regionalChallenges  
 
-The pandas development team. (2024). *pandas-dev/pandas: Pandas* (Version 2.2.2) [Software]. Zenodo. https://doi.org/10.5281/zenodo.3509134
+The pandas development team. (2024). *pandas-dev/pandas: Pandas* (Version 2.2.2) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.3509134
 
 Waskom, M. L. (2021). seaborn: statistical data visualization. *Journal of Open Source Software, 6*(60), 3021. https://doi.org/10.21105/joss.03021
