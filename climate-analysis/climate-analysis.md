@@ -16,8 +16,8 @@ Menne, Matthew J., Imke Durre, Bryant Korzeniewski, Shelley McNeill, Kristy Thom
 
 #### Methods
 
-The data was accessed from a National Centers for Environmental Information [API service](https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation) and queried for the precipitation data type, station, and date range of 01-01-2022 to 12-31-2023. This range was chosen to gather full water years for comparison; the station began observing precipitation in late 2021. The CSV data file was ingested using the [pandas](https://pandas.pydata.org/) library and the date records were changed to pandas datetime objects. Using these datetimes, month, year, and season data were generated. Additionally, the precipitation data were converted from millimeters to inches.
-Next the data was subset to precipitation, month, year, and season, and grouped by the average observed precipitation value. Some months contained sparse daily records and the averages identified reflect this limitation. Finally, visualization libraries [Matplotlib](https://matplotlib.org/) and [Seaborn](https://seaborn.pydata.org/) were used to plot and display the relationship between month and precipitation across annual groupings.  
+The data was accessed from a National Centers for Environmental Information [API service](https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation) and queried for the precipitation data type, station, and date range of 01-01-2022 to 12-31-2023. This range was chosen to gather full water years for comparison; the station began observing precipitation in late 2021. The CSV data file was ingested using the [pandas](https://doi.org/10.5281/zenodo.3509134) library and the date records were changed to pandas datetime objects. Using these datetimes, month, year, and season data were generated. Additionally, the precipitation data were converted from millimeters to inches.
+Next the data was subset to precipitation, month, year, and season, and grouped by the average observed precipitation value. Some months contained sparse daily records and the averages identified reflect this limitation. Finally, visualization libraries [Matplotlib](https://zenodo.org/records/13308876) and [Seaborn](https://doi.org/10.21105/joss.03021) were used to plot and display the relationship between month and precipitation across annual groupings.  
 
 #### Analysis 
 
@@ -142,17 +142,16 @@ Halofsky, J. E., Peterson, D. L., Buluç, L. Y., & Ko, J. M. (2021). *Climate ch
 
 Huang, X., Swain, D. L., Walton, D. B., Stevenson, S., & Hall, A. D. (2020, January 29). Simulating and evaluating atmospheric river-induced precipitation extremes along the U.S. Pacific Coast: Case studies from 1980-2017. *Journal of Geophysical Research: Atmospheres, 125*(4). https://doi.org/10.1029/2019JD031554 
 
+Hunter, J. D. (2024). *Matplotlib: A 2D graphics environment* (Version 3.9.2) [Software]. Zenodo. https://zenodo.org/records/13308876
+
 Lake Tahoe Basin Management Unit. (n.d.). *About the area.* U.S. Forest Service. https://www.fs.usda.gov/main/ltbmu/about-forest/about-area 
-
-Matplotlib. (n.d.). *API reference.* https://matplotlib.org/stable/api/index 
-
-pandas. (n.d.). *pandas documentation.* https://pandas.pydata.org/docs 
 
 National Centers for Environmental Information. (n.d.). *Global Historical Climatology Network Daily.* https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/doc/GHCND_documentation.pdf
 
 NOAA. (2023, March 31). *What are atmospheric rivers?* https://www.noaa.gov/stories/what-are-atmospheric-rivers 
 
-Seaborn. (n.d.). *API reference.* https://seaborn.pydata.org/api.html 
-
 Sierra Nevada Conservancy. (n.d.). *Sierra Nevada Watershed Improvement Program (WIP).* https://sierranevada.ca.gov/what-we-do/#regionalChallenges  
 
+The pandas development team. (2024). *pandas-dev/pandas: Pandas* (Version 2.2.2) [Software]. Zenodo. https://doi.org/10.5281/zenodo.3509134
+
+Waskom, M. L. (2021). seaborn: statistical data visualization. *Journal of Open Source Software, 6*(60), 3021. https://doi.org/10.21105/joss.03021
