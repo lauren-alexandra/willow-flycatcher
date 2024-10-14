@@ -13,13 +13,15 @@ In my home state of California, there are three [endangered subspecies](https://
 
 #### Data Citation
 
+Global Biodiversity Information Facility. (2024). *GBIF Occurrence Download* [Data set]. https://doi.org/10.15468/dl.jqrwjf
+
 #### Methods
 - Normalization: why is it necessary, and how did you do it? We normalized by sampling effort in the ecoregion and month, and by area.
 
 
-<embed type="text/html" src="willow-flycatcher-migration.html" width="600" height="600">
+<embed type="text/html" src="willow-flycatcher-migration.html" width="600" height="800">
 
-#### Plot headline 
+#### Migration
 
 - Plot description, discussion, conclusion
 
