@@ -1,440 +1,157 @@
-## Sierra Nevada Precipitation
+## Precipitation in the Sierra Nevada
 
-[Lake Tahoe](https://www.fs.usda.gov/main/ltbmu/about-forest/about-area) was selected to examine trends in California precipitation. The location is nested within the Sierra Nevada mountain range, which functions as a collection of moisture islands. The range forms barriers to incoming weather systems so that air and moisture are lifted over them, condensing the moisture which falls as precipitation to build thick snowpacks. Given the high precipitation and low evapotranspiration, the [Sierra](https://www.fs.usda.gov/psw/publications/documents/psw_gtr272/psw_gtr272_013.pdf) produces most of the runoff forming my state's water supply. 
+[Lake Tahoe](https://www.fs.usda.gov/main/ltbmu/about-forest/about-area) was selected to highlight trends in Sierra Nevada precipitation. The mountain range functions as a collection of moisture islands. The range forms barriers to incoming weather systems so that air and moisture are lifted over them, condensing the moisture which falls as precipitation to build thick snowpacks. Given the high precipitation and low evapotranspiration, the [Sierra](https://www.fs.usda.gov/psw/publications/documents/psw_gtr272/psw_gtr272_013.pdf) produces most of the runoff forming my state's water supply. 
 
-#### Site: SOUTH LAKE TAHOE 1.4 ESE, CA US
+#### Site: SOUTH LAKE TAHOE, CA, US
 
 <img src="south_lake_tahoe_station.png" alt="South Lake Tahoe Station" width="350px" height="420px">
 
-##### Data Description
+#### Data Description
 
-The South Lake Tahoe [subset]((https://www.ncdc.noaa.gov/cdo-web/datasets/GHCND/stations/GHCND:US1CAED0035/detail)) of the [Global Historical Climatology Network daily dataset](https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00861/html) contains observations obtained at a weather station positioned at 1,919.6 m elevation. The station observes rain and melted snow (in); snow, ice pellets, and hail (in); and snow, ice pellets, and hail on ground (in). 
+The South Lake Tahoe [subset](https://www.ncdc.noaa.gov/cdo-web/datasets/GHCND/stations/GHCND:US1CAED0035/detail) of the [Global Historical Climatology Network daily dataset](https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ncdc:C00861/html) contains observations obtained at a weather station positioned at 1,919.6 m elevation. The station monitors rain and melted snow (mm); snow, ice pellets, and hail (mm); and snow, ice pellets, and hail on the ground (mm). 
 
-##### Data Citation
+#### Data Citation
 
 Menne, Matthew J., Imke Durre, Bryant Korzeniewski, Shelley McNeill, Kristy Thomas, Xungang Yin, Steven Anthony, Ron Ray, Russell S. Vose, Byron E.Gleason, and Tamara G. Houston (2012): Global Historical Climatology Network - Daily (GHCN-Daily), Version 3. [GHCND:US1CAED0035]. NOAA National Climatic Data Center. doi:10.7289/V5D21VHZ [09/15/2024].
 
-##### Methods
+#### Methods
 
-The data was accessed from a National Centers for Environmental Information [API service](https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation) and queried for the precipitation data type, station, and date range of 01-01-2022 to 12-31-2023. This range was chosen to gather full water years for comparison; the station began observing precipitation in late 2021. The CSV was ingested using the [pandas](https://pandas.pydata.org/) library and the date records converted to a pandas datetime object. Using these datetimes, month and year data were generated. Next the data was subset to precipitation, month, and year, and grouped by the month and year average observed precipitation value. Some months contained sparse daily records and the averages identified reflect this limitation. Finally, visualization libraries [Matplotlib](https://matplotlib.org/) and [Seaborn](https://seaborn.pydata.org/) were used to plot and display the relationship between month and precipitation across annual groupings.  
+The data was accessed from a National Centers for Environmental Information [API service](https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation) and queried for the precipitation data type, station, and date range of 01-01-2022 to 12-31-2023. This range was chosen to gather full water years for comparison; the station began observing precipitation in late 2021. The CSV data file was ingested using the [pandas](https://doi.org/10.5281/zenodo.3509134) library and the date records were changed to pandas datetime objects. Using these datetimes, month, year, and season data were generated. Additionally, the precipitation data were converted from millimeters to inches.
+Next the data was subset to precipitation, month, year, and season, and grouped by the average observed precipitation value. Some months contained sparse daily records and the averages identified reflect this limitation. Finally, visualization libraries [Matplotlib](https://zenodo.org/records/13308876) and [Seaborn](https://doi.org/10.21105/joss.03021) were used to plot and display the relationship between month and precipitation across annual groupings.  
 
-#### Analysis
+#### Analysis 
 
+```python
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+```
 
+```python
+# NCEI API URL
 
+SLT_DAILY_PREP_URL = ("https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries"+
+                      "&dataTypes=PRCP&stations=US1CAED0035&startDate=2022-01-01&endDate=2023-12-31")
 
-    'https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&dataTypes=PRCP&stations=US1CAED0035&startDate=2022-01-01&endDate=2023-12-31'
+# Import precipitation data
 
+slt_daily_precip = pd.read_csv(SLT_DAILY_PREP_URL) 
+```
 
+```python
+# Add months, years, and seasons to dataframe
 
+def create_dataframe_calendar_cols(df):
+    season_by_month = {1: 'Winter', 2: 'Winter', 3: 'Spring', 4: 'Spring', 5: 'Spring', 6: 'Summer', 
+                       7: 'Summer', 8: 'Summer', 9: 'Autumn', 10: 'Autumn', 11: 'Autumn', 12: 'Winter'}
 
+    # get the pandas datetime from DATE col 
+    df['DATE'] = pd.to_datetime(df['DATE'])
 
+    # get month
+    df['MONTH'] = df['DATE'].dt.month
+    df['MONTH'].astype('int')
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+    # get year 
+    df['YEAR'] = df['DATE'].dt.year
+    df['YEAR'].astype('int')
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+    # get season
+    df['SEASON'] = df['MONTH'].map(lambda month: season_by_month[month])
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>STATION</th>
-      <th>DATE</th>
-      <th>PRCP</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>US1CAED0035</td>
-      <td>2022-01-04</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>US1CAED0035</td>
-      <td>2022-01-07</td>
-      <td>10.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>US1CAED0035</td>
-      <td>2022-02-15</td>
-      <td>46.0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>US1CAED0035</td>
-      <td>2022-02-21</td>
-      <td>0.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>US1CAED0035</td>
-      <td>2022-02-23</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+    return df
+```
 
+```python
+# Create calendar data and drop nulls
 
+slt_daily_precip = create_dataframe_calendar_cols(slt_daily_precip)
+slt_daily_precip.dropna(inplace=True)
+```
 
-    STATION            object
-    DATE       datetime64[ns]
-    PRCP              float64
-    dtype: object
+```python
+# Convert from millimeters to inches
 
+def convert_to_inches(obs):
+    if (obs == 0.0):
+        return obs
+    else: 
+        return obs / 25.4
+```
 
+```python
+# Convert precipitation metric
 
+slt_daily_precip.PRCP = slt_daily_precip.PRCP.apply(convert_to_inches)
+```
 
+```python
+# Subset the columns of interest
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+slt_daily_precip = slt_daily_precip.loc[:, ['PRCP', 'MONTH', 'YEAR', 'SEASON']]
+```
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+```python
+# Group by mean observed precipitation value
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>STATION</th>
-      <th>DATE</th>
-      <th>PRCP</th>
-      <th>MONTH</th>
-      <th>YEAR</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>US1CAED0035</td>
-      <td>2022-01-04</td>
-      <td>0.0</td>
-      <td>1</td>
-      <td>2022</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>US1CAED0035</td>
-      <td>2022-01-07</td>
-      <td>10.0</td>
-      <td>1</td>
-      <td>2022</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>US1CAED0035</td>
-      <td>2022-02-15</td>
-      <td>46.0</td>
-      <td>2</td>
-      <td>2022</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>US1CAED0035</td>
-      <td>2022-02-21</td>
-      <td>0.0</td>
-      <td>2</td>
-      <td>2022</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>US1CAED0035</td>
-      <td>2022-02-23</td>
-      <td>NaN</td>
-      <td>2</td>
-      <td>2022</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+slt_month_precip_avg = slt_daily_precip.groupby(by=["MONTH", "YEAR", "SEASON"]).mean() 
+```
 
+```python
+# Plot seasonal precipitation across years
 
+p = so.Plot(slt_month_precip_avg, x="MONTH", y="PRCP", color="SEASON").add(so.Bar()).layout(size=(8, 6)).label(
+            x="Month", y="Precipitation")
 
+p.label(title='Lake Tahoe Seasonal Precipitation 2022-2023 (Inches)')
+```
 
+![png](lt-seasonal-precip-2022-2023.png)
 
+```python
+# Plot annual precipitation
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+fig = plt.figure(figsize=(10, 6)) 
+ax = plt.axes()
+plt.title('Lake Tahoe Average Annual Precipitation (Inches)')
+plt.legend([2022, 2023], loc='upper right')
+plt.xlabel("Month")
+plt.ylabel("Precipitation")
+plt.xticks([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+           ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'])
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+sns.lineplot(data=slt_month_precip_avg, x="MONTH", y="PRCP", hue="YEAR", style="YEAR", palette=['darkblue', 'g'])
+fig.savefig("lt-avg-precip-2022-2023.png") 
+```
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>STATION</th>
-      <th>DATE</th>
-      <th>PRCP</th>
-      <th>MONTH</th>
-      <th>YEAR</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>US1CAED0035</td>
-      <td>2022-01-04</td>
-      <td>0.0</td>
-      <td>1</td>
-      <td>2022</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>US1CAED0035</td>
-      <td>2022-01-07</td>
-      <td>10.0</td>
-      <td>1</td>
-      <td>2022</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>US1CAED0035</td>
-      <td>2022-02-15</td>
-      <td>46.0</td>
-      <td>2</td>
-      <td>2022</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>US1CAED0035</td>
-      <td>2022-02-21</td>
-      <td>0.0</td>
-      <td>2</td>
-      <td>2022</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>US1CAED0035</td>
-      <td>2022-03-04</td>
-      <td>48.0</td>
-      <td>3</td>
-      <td>2022</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+![png](lt-avg-precip-2022-2023.png)
 
+### High Year-to-Year Precipitation Variability
 
+The Sierra Nevada mountains receive most of their precipitation during a short wet period consisting of fix to six [atmospheric river storms](https://www.noaa.gov/stories/what-are-atmospheric-rivers) on average with great annual variability. A difference of one to two major storms can ensure a normal versus a dry water year. The above graphs highlight the annual variance in precipitation with notable shifts in the early months when it is optimal for precipitation to fall as snow rather than rain, supporting longer streamflows later in the summer when demand is high. The majority of precipitation is expected between [December through February](https://oehha.ca.gov/climate-change/epic-2022/changes-climate/precipitation#:~:text=California%20receives%20about%2075%20percent,information%2C%20download%20the%20Precipitation%20chapter.), but [warmer temperatures](https://www.fs.usda.gov/psw/publications/documents/psw_gtr272/psw_gtr272_013.pdf) influence whether or not precipitation falls as snow. 
 
+Atmospheric rivers are often associated with [flood risk](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2020GL088679) and are especially risky depending on when they occur. For instance, one of these events occurred in March 2023 (averaging 6 inches of precipitation) and in preparation for the event, the [City of South Lake Tahoe](https://sierranevadaalliance.org/city-of-south-lake-tahoe-urges-residents-to-prepare-for-impacts-of-rain-on-snow-event/) communicated the danger to local residents: "The potential of heavy rainfall across the region brings the threat of flooding and roof collapses. Flooding may occur as a result of rain on existing snow and ice on the ground, and streams and river basins that are already elevated after numerous storms." Atmospheric rivers are a natural component of Sierra hydrology and [provide about 60% of the state's developed water](https://sierranevada.ca.gov/what-we-do/#regionalChallenges), but they are expected to become more extreme under climate change with [projected precipitation](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2019JD031554) increasing 25% on average. How the state and stewards of the Sierra Nevada respond to shifts in precipitation will largely shape California's future resiliency. 
 
+#### References
 
+Baker, L. N. (2023, March 7). *City of South Lake Tahoe urges residents to prepare for impacts of rain-on-snow event.* Sierra Nevada Alliance. https://sierranevadaalliance.org/city-of-south-lake-tahoe-urges-residents-to-prepare-for-impacts-of-rain-on-snow-event 
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+California Office of Environmental Health Hazard Assessment. (2024, July 1). *Precipitation.* https://oehha.ca.gov/climate-change/epic-2022/changes-climate/precipitation#:~:text=California%20receives%20about%2075%20percent,information%2C%20download%20the%20Precipitation%20chapter 
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+Halofsky, J. E., Peterson, D. L., Buluç, L. Y., & Ko, J. M. (2021). *Climate change vulnerability and adaptation for infrastructure and recreation in the Sierra Nevada.* U.S. Department of Agriculture, Forest Service, Pacific Southwest Research Station. https://doi.org/10.2737/PSW-GTR-272 
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>PRCP</th>
-      <th>MONTH</th>
-      <th>YEAR</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>1</td>
-      <td>2022</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>10</td>
-      <td>1</td>
-      <td>2022</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>46</td>
-      <td>2</td>
-      <td>2022</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0</td>
-      <td>2</td>
-      <td>2022</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>48</td>
-      <td>3</td>
-      <td>2022</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+Huang, X., Swain, D. L., Walton, D. B., Stevenson, S., & Hall, A. D. (2020, January 29). Simulating and evaluating atmospheric river-induced precipitation extremes along the U.S. Pacific Coast: Case studies from 1980-2017. *Journal of Geophysical Research: Atmospheres, 125*(4). https://doi.org/10.1029/2019JD031554 
 
+Hunter, J. D. (2024). *Matplotlib: A 2D graphics environment* (Version 3.9.2) [Computer software]. Zenodo. https://zenodo.org/records/13308876
 
+Lake Tahoe Basin Management Unit. (n.d.). *About the area.* U.S. Forest Service. https://www.fs.usda.gov/main/ltbmu/about-forest/about-area 
 
+National Centers for Environmental Information. (n.d.). *Global Historical Climatology Network Daily.* https://www.ncei.noaa.gov/data/global-historical-climatology-network-daily/doc/GHCND_documentation.pdf
 
+NOAA. (2023, March 31). *What are atmospheric rivers?* https://www.noaa.gov/stories/what-are-atmospheric-rivers 
 
+Sierra Nevada Conservancy. (n.d.). *Sierra Nevada Watershed Improvement Program (WIP).* https://sierranevada.ca.gov/what-we-do/#regionalChallenges  
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+The pandas development team. (2024). *pandas-dev/pandas: Pandas* (Version 2.2.2) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.3509134
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>PRCP</th>
-    </tr>
-    <tr>
-      <th>MONTH</th>
-      <th>YEAR</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="2" valign="top">1</th>
-      <th>2022</th>
-      <td>5.000000</td>
-    </tr>
-    <tr>
-      <th>2023</th>
-      <td>119.625000</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">2</th>
-      <th>2022</th>
-      <td>23.000000</td>
-    </tr>
-    <tr>
-      <th>2023</th>
-      <td>107.777778</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">3</th>
-      <th>2022</th>
-      <td>26.600000</td>
-    </tr>
-    <tr>
-      <th>2023</th>
-      <td>153.928571</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">4</th>
-      <th>2022</th>
-      <td>100.000000</td>
-    </tr>
-    <tr>
-      <th>2023</th>
-      <td>15.333333</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <th>2023</th>
-      <td>34.125000</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <th>2022</th>
-      <td>14.333333</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">8</th>
-      <th>2022</th>
-      <td>32.333333</td>
-    </tr>
-    <tr>
-      <th>2023</th>
-      <td>21.666667</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">9</th>
-      <th>2022</th>
-      <td>7.000000</td>
-    </tr>
-    <tr>
-      <th>2023</th>
-      <td>73.666667</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">10</th>
-      <th>2022</th>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>2023</th>
-      <td>142.000000</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <th>2022</th>
-      <td>134.500000</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">12</th>
-      <th>2022</th>
-      <td>37.333333</td>
-    </tr>
-    <tr>
-      <th>2023</th>
-      <td>104.750000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-![png](slt-obs-precip-2022-2023.png)
-
-#### High Year-to-Year Precipitation Variability
-
-The Sierra Nevada mountains receive most of their precipitation during a short wet period consisting of fix to six [atmospheric river storms](https://www.noaa.gov/stories/what-are-atmospheric-rivers) on average with great annual variability. A difference of one to two major storms can ensure a normal versus a dry water year. The above graph highlights the annual variance in precipitation with notable shifts in the early months when it is optimal for precipitation to fall as snow rather than rain, supporting longer streamflows later in the summer when demand is high. The majority of precipitation is expected between December through March, but [warmer temperatures](https://www.fs.usda.gov/psw/publications/documents/psw_gtr272/psw_gtr272_013.pdf) influence whether or not precipitation falls as snow. 
-
-Atmospheric rivers are often associated with [flood risk](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2020GL088679) and are especially risky depending on when they occur. For instance, one of these events occurred in March 2023 (see graph) and in preparation for the event, the [City of South Lake Tahoe](https://sierranevadaalliance.org/city-of-south-lake-tahoe-urges-residents-to-prepare-for-impacts-of-rain-on-snow-event/) communicated the danger to local residents: "The potential of heavy rainfall across the region brings the threat of flooding and roof collapses. Flooding may occur as a result of rain on existing snow and ice on the ground, and streams and river basins that are already elevated after numerous storms." Atmospheric rivers are a natural component of Sierra hydrology and [provide about 60% of the state's developed water](https://sierranevada.ca.gov/what-we-do/#regionalChallenges), but they are expected to become more extreme under climate change with [projected precipitation](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2019JD031554) increasing 25% on average. How the state and stewards of the Sierra Nevada respond to shifts in precipitation will largely shape California's future resiliency. 
+Waskom, M. L. (2021). seaborn: statistical data visualization. *Journal of Open Source Software, 6*(60), 3021. https://doi.org/10.21105/joss.03021
