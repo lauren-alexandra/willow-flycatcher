@@ -1,6 +1,6 @@
 ## About
 
-Hello! I am a data scientist based in Sacramento, California with an interest in improving understanding of Earth system processes and restoring ecosystems. My research focus is climate-informed modeling for water and ecosystem management with a particular emphasis on applied solutions in mitigating the impacts of hydroclimate variability. I enjoy exploring my local riparian forest and serve as a water quality monitor for the American River Conservancy, collecting hydrological data in the Cosumnes River Watershed by recording field measurements, documenting habitat conditions, and observing species including endangered and at risk species in the western Sierra river.
+Hello! I am a data scientist based in Sacramento, California with an interest in improving understanding of Earth system processes and stewarding ecosystems. My research focus is climate-informed modeling for water and ecosystem management with a particular emphasis on applied solutions in mitigating the impacts of hydroclimate variability. I enjoy exploring my local riparian forest and serve as a water quality monitor for the American River Conservancy, collecting hydrological data in the Cosumnes River Watershed by recording field measurements, documenting habitat conditions, and observing species including endangered and at risk species in the western Sierra river.
 
 <div style="margin-bottom: 30px; margin-left: 70px;">
   <img width="250" height="400" alt="lauren-alexandra-profile" src="https://github.com/user-attachments/assets/573f8477-f323-444a-95d8-a184bdec31ab">
