@@ -27,8 +27,7 @@ Data for ecoregions were gathered from a [RESOLVE](https://www.resolve.ngo/proje
 
 For visualization, the GeoDataFrame was simplified to a Mercator projection from the [Cartopy](https://scitools.org.uk/cartopy/docs/latest/) library which is compatible with the [hvplot API](https://hvplot.holoviz.org/) and [GeoViews](https://geoviews.org/). The GeoDataFrame was also joined with the normalized occurrences data. The plot produced highlights monthly migration patterns and is interactive due to the sliding widget from the HoloViews [panel](https://panel.holoviz.org/reference/panes/HoloViews.html) library.
 
-
-<embed type="text/html" src="willow-flycatcher-migration.html" width="600" height="800">
+<img src="willow-flycatcher-migration-plot.png" alt="Willow Flycatcher Migration Plot" width="500" height="700" /> 
 
 #### Species Distribution
 
