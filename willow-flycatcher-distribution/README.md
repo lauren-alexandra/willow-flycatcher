@@ -1,5 +1,5 @@
 ## Willow Flycatcher Distribution
 
-To view post with interactive map, download willow-flycatcher-distribution folder and open willow-flycatcher-distribution-post.html in browser.
+To view post with an interactive map, download the willow-flycatcher-distribution folder and open willow-flycatcher-distribution-post.html in browser.
 
-For quick view of post without the map, check out the [notebook](https://github.com/lauren-alexandra/lauren-alexandra.github.io/blob/main/willow-flycatcher-distribution/willow-flycatcher-distribution.ipynb).
+For a quick view of the post without the interactive map, check out [willow-flycatcher-distribution-post.md](https://github.com/lauren-alexandra/lauren-alexandra.github.io/blob/main/willow-flycatcher-distribution/willow-flycatcher-distribution-post.md).
