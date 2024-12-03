@@ -520,6 +520,5 @@ Snow, A. D., Scott, R., Raspaud, M., Brochart, D., Kouzoubov, K., Henderson, S.,
 
 The pandas development team. (2024). *pandas-dev/pandas: Pandas* (Version 2.2.2) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.3509134
 
-The scikit-learn developers. (2024). scikit-learn (1.5.2). Zenodo. https://doi.org/10.5281/zenodo.13749328
-
+The scikit-learn developers. (2024). scikit-learn (1.5.2). [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.13749328
 
