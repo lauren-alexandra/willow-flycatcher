@@ -5,11 +5,13 @@
 #### Introduction
 
 
-
 #### Data Description
 
 
+
 #### Data Citation
+
+NASA. (2024). *HLSL30 v002* [Data set]. doi:10.5067/HLS/HLSL30.002
 
 
 #### Methods
@@ -443,6 +445,8 @@ sac_ndvi_gdf = sac_ndvi_gdf.dropna(subset=["grade"])
 )
 ```
 
+<img src="images/ndvi_holc_grades.png" alt="NDVI and HOLC Grades" /> 
+
 ```python
 # Convert categories to numbers
 sac_ndvi_gdf['grade_codes'] = sac_ndvi_gdf.grade.cat.codes
@@ -476,6 +480,7 @@ sac_ndvi_gdf.hvplot(
 )
 ```
 
+<img src="images/holc_grade_prediction_error.png" alt="HOLC Grade Prediction Error" /> 
 
 ```python
 # Evaluate the model with cross-validation
