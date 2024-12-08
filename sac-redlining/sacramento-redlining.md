@@ -109,6 +109,8 @@ grade_gdf.hvplot(
     frame_width=550
 )
 ```
+<img src="images/holc_redlining.png" alt="HOLC Sacramento Redlining" width="550px" height="580px" /> 
+
 
 Process Multispectral Data
 
