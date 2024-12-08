@@ -480,7 +480,7 @@ sac_ndvi_gdf.hvplot(
 )
 ```
 
-<img src="images/holc_grade_prediction_error.png" alt="HOLC Grade Prediction Error" /> 
+<img src="images/holc_grade_prediction_error.png" alt="HOLC Grade Prediction Error" width="500px" height="530px" /> 
 
 ```python
 # Evaluate the model with cross-validation
