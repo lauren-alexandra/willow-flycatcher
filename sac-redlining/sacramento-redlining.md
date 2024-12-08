@@ -1,6 +1,6 @@
 ## Sacramento Redlining
 
-<img src="images/sac-aerial.png" alt="Sacramento Aerial Landscape" width="730" height="470" longdesc="https://www.photopilot.com/blog/downtown-sacramento-california-state-capital" /> 
+<img src="images/sac-aerial.png" alt="Sacramento Aerial Landscape" width="800" height="500" longdesc="https://www.photopilot.com/blog/downtown-sacramento-california-state-capital" /> 
 
 #### Introduction
 
@@ -357,7 +357,7 @@ fig.savefig("images/city-green-reflectance.png")
 city_green_plt
 ```
 
-<img src="images/city-green-reflectance.png" alt="Sacramento Green Reflectance" /> 
+<img src="images/city-green-reflectance.png" alt="Sacramento Green Reflectance" width="800px" height="600px" /> 
 
 
 Explore relationship between Normalized Difference Vegetation Index and HOLC grades
@@ -445,7 +445,7 @@ sac_ndvi_gdf = sac_ndvi_gdf.dropna(subset=["grade"])
 )
 ```
 
-<img src="images/ndvi_holc_grades.png" alt="NDVI and HOLC Grades" /> 
+<img src="images/ndvi_holc_grades.png" alt="NDVI and HOLC Grades" height="500px" width="1000px" /> 
 
 ```python
 # Convert categories to numbers
@@ -480,7 +480,7 @@ sac_ndvi_gdf.hvplot(
 )
 ```
 
-<img src="images/holc_grade_prediction_error.png" alt="HOLC Grade Prediction Error" width="500px" height="530px" /> 
+<img src="images/holc_grade_prediction_error.png" alt="HOLC Grade Prediction Error" width="550px" height="580px" /> 
 
 ```python
 # Evaluate the model with cross-validation
