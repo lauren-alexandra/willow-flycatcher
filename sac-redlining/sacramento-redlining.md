@@ -23,7 +23,11 @@ NASA. (2024). *HLSL30 v002* [Data set]. http://doi.org/10.5067/HLS/HLSL30.002
 
 #### Methods
 
+#### Methods
 
+The [redlining GeoPackage](https://dsl.richmond.edu/panorama/redlining/static/mappinginequality.gpkg) was loaded into a GeoDataFrame with [geopandas](https://geopandas.org/) and subset for the city of Sacramento. [earthaccess](https://earthaccess.readthedocs.io/en/latest/) (a library for NASA's Search API) retrieved data granules by dataset (HLSL30) and limited the scope to a single day in 2024 and the spatial bounds collected from the redlining GeoDataFrame. Next the landsat data was filtered by band and stored in a [pandas](https://pandas.pydata.org/docs/reference/index.html) DataFrame. Data granules were grouped by tile ID, subset to red, green, and NIR bands, cropped, scaled, masked, and merged before storing the resulting [xarray](https://docs.xarray.dev/) DataArrays in a dictionary indexed by band.
+
+Normalized Difference Vegetation Index (NDVI) was calculated with band DataArrays. The [regionmask](https://regionmask.readthedocs.io/) library created a mask of the HOLC zones from the redlining GeoDataFrame and the longitude and latitude sourced from a band DataArray. Thereafter, NDVI summary statistics were calculated for each zone using the NDVI DataArray and redlining mask with [xarray-spatial](https://xarray-spatial.readthedocs.io/en/stable/). Statistics were merged on the zone with the redlining GeoDataFrame and the HOLC grades were ordered for plotting. NDVI and redlining grade were plotted in linked subplots using the [hvplot API](https://hvplot.holoviz.org/). A scikit-learn [decision tree](https://scikit-learn.org/1.5/modules/generated/sklearn.tree.DecisionTreeClassifier.html) was then applied to predict HOLC grade by NDVI average and evaluated by *k*-fold cross-validation. Finally, the grade prediction error by zone was determined and plotted.
 
 #### Analysis
 
@@ -277,22 +281,6 @@ raster_df = raster_df[~raster_df['band_id'].isin(exclude_files)]
 # Check the results
 raster_df
 ```
-
-```python
-process_tiles = [
-    'HLS.L30.T10SFH.2024193T184504.v2.0',
-    'HLS.L30.T10SFH.2024201T184514.v2.0',
-    'HLS.L30.T10SFH.2024209T184507.v2.0',
-    'HLS.L30.T10SFH.2024217T184515.v2.0',
-    'HLS.L30.T10SFH.2024225T184516.v2.0',
-    'HLS.L30.T10SFH.2024233T184525.v2.0',
-    'HLS.L30.T10SFH.2024241T184527.v2.0',
-    'HLS.L30.T10SFH.2024249T184534.v2.0',
-    'HLS.L30.T10SFH.2024257T184530.v2.0',
-    'HLS.L30.T10SFH.2024265T184535.v2.0'
-]
-```
-
 
 ```python
 # Bands of interest
