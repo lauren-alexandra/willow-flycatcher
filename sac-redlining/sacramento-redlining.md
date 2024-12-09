@@ -7,11 +7,15 @@
 
 #### Data Description
 
-The [HLSL30 v002](doi:10.5067/HLS/HLSL30.002) product provides 30-m Nadir Bidirectional Reflectance Distribution Function (BRDF)-Adjusted Reflectance (NBAR) and is derived from Landsat 8/9 Operational Land Imager (OLI) data products through the Harmonized Landsat Sentinel-2 (HLS) project. The sensor resolution is 30 m, imagery resolution is 30 m, and the temporal resolution is daily with an 8 day revisit time.
+The [HLSL30 v002](doi:10.5067/HLS/HLSL30.002) product provides 30-m Nadir Bidirectional Reflectance Distribution Function (BRDF)-Adjusted Reflectance (NBAR) and is derived from Landsat 8/9 Operational Land Imager (OLI) data products through the Harmonized Landsat Sentinel-2 (HLS) project. The sensor resolution is 30 m, imagery resolution is 30 m, and the temporal resolution is daily with an 8 day revisit time. 
+
+The [Sacramento subset](https://dsl.richmond.edu/panorama/redlining/data/CA-Sacramento) of the Mapping Inequality dataset is derived from [City Survey Files, 1935-1940](https://catalog.archives.gov/id/720357) at the National Archives. The data contains redlining maps and reports of economic health and mortgage lending risk by location.
 
 #### Data Citation
 
-NASA. (2024). *HLSL30 v002* [Data set]. doi:10.5067/HLS/HLSL30.002
+Madron, J., Champine, R., Dzuliashvili, Z., Encino, R., Holland, J., Jones, K., … Kliebert, P. (2023). *Mapping inequality: Redlining in New Deal America* (3) [Data set]. University of Richmond. https://dsl.richmond.edu/panorama/redlining/static/mappinginequality.gpkg
+
+NASA. (2024). *HLSL30 v002* [Data set]. http://doi.org/10.5067/HLS/HLSL30.002
 
 
 #### Methods
