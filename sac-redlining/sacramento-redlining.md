@@ -8,7 +8,6 @@
 #### Data Description
 
 
-
 #### Data Citation
 
 NASA. (2024). *HLSL30 v002* [Data set]. doi:10.5067/HLS/HLSL30.002
@@ -487,18 +486,34 @@ sac_ndvi_gdf.hvplot(
 ```python
 # Evaluate the model with cross-validation
 
-cross_val_score(
+results = cross_val_score(
     DecisionTreeClassifier(max_depth=2),
     sac_ndvi_gdf[['mean']],
     sac_ndvi_gdf['grade_codes'],
     cv=4 # reduce folds because of small dataset
 )
 
-# Result: array([0.57142857, 0.42857143, 0.64285714, 0.42857143])
+print(f'Results: {results}')
+```
+
+```python
+
+Results: [0.57142857 0.42857143 0.64285714 0.42857143]
+
 ```
 
 #### Discussion
 
+The legacy of redlining has siloed communities of color in areas that are more likely to lack green space and be located closer to environmental hazards (Thomas, 2022). The observed environmental injustices imposed in redlined neighborhoods are extensive with impacts ranging across communities: 
+
+- Today, approximately 43% of Black Americans live in urban “heat islands” which contain minimal tree cover and large amounts of exposed asphalt and concrete which retain heat and increase ambient temperature. These neighborhoods are up to 12.6°F warmer than non-redlined neighborhoods. Extreme heat events are also exacerbated in redlined areas, with Black Americans incurring higher rates of heat-related deaths and illnesses than white communities.
+- Compared to Latinx Americans, white communities are 21% less likely to live in a heat island. Additionally, over 4.3 million Latinx families live in homes without access to air-conditioning. Air pollution is another great concern: about 50% of Latinx individuals live in areas which violate clean air and ozone standards.
+- Urban heat islands magnify impacts of diminished indoor air quality as well which has been attributed to asthma rates in tribal communities that are nearly double the U.S. average. Furthermore, the inequitable distribution of urban green space coincides with other forms of systemic racism and their impacts, such as government displacement of tribal communities and sparse access to safe running water.
+- On average, 50% of Asian American communities have reduced access to shaded green spaces and 32% of Asian Americans live in neighborhoods where heat-retaining surfaces cover more than half of the ground. Moreover, Southeast and South Asian communities have the 4th and 5th highest risk of cancer due to air pollution. Compared to other racial groups, Chinese and Korean Americans have the largest mean cancer risk from air pollution exposure.
+
+Robert Bullard, the "father of environmental justice" in the United States, asserted in a 2018 [interview](https://www.theguardian.com/commentisfree/2018/dec/20/robert-bullard-interview-environmental-justice-civil-rights-movement) that inequity in neighborhoods is not just about proximity to hazards, but also limited access to elements that foster healthy communities: "Communities of color don’t get a fair share of the good stuff – parks, green spaces, nature trails, good schools, farmers markets, good stores. They get less of all the things that make communities healthy and get more of their fair share of the bad stuff." This is phenomenon is reflected in the HOLC area descriptions. The [HOLC security map](https://dsl.richmond.edu/panorama/redlining/data/CA-Sacramento) for Sacramento described one "B" area as a "new subdivision, located in a natural oak grove" with homogenous improvements and population, high class construction, and favorable influences encompassing schools, churches, and trading facilities. On the contrary, "D" areas were described as having detrimental influences such as a heterogeneous population and the absence of building improvements.
+
+We can inspect landsat data for the redlining differences in vegetation (see Green Reflectance plot), however there is not a significant decrease in green radiation until a plant is extremely stressed. A more useful indicator of healthy vegetation is the comparison of Near-InfraRed (NIR) to red reflectance, calculated by the Normalized Difference Vegetation Index (NDVI). For each redlining zone, the NDVI was assessed (see NDVI vs. HOLC Grades plot). A simple decision tree classifier performs fairly well in predicting the HOLC grade based on the mean NDVI. Given the 4 target grades and scores rising well above 25% accuracy, this suggests a moderate to mid-high dependency between NDVI and HOLC grade.
 
 
 #### References
@@ -519,6 +534,10 @@ Jordahl, K., Van den Bossche, J., Fleischmann, M., Wasserman, J., McBride, J., G
 
 Met Office. (2024). *Cartopy: a cartographic python library with a Matplotlib interface* (Version 0.24.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.13905945
 
+Michney, T. M. (n.d.). How and why the Home Owners' Loan Corporation made its redlining maps. Mapping Inequality. https://dsl.richmond.edu/panorama/redlining/howandwhy
+
+Milman, O. (2018, December 20). Robert Bullard: ‘Environmental justice isn’t just slang, it’s real’. The Guardian. https://www.theguardian.com/commentisfree/2018/dec/20/robert-bullard-interview-environmental-justice-civil-rights-movement
+
 Python Software Foundation. (2024). *Python* (Version 3.12.6) [Computer software]. https://docs.python.org/release/3.12.6 
 
 Rudiger, P., Liquet, M., Signell, J., Hansen, S. H., Bednar, J. A., Madsen, M. S., … Hilton, T. W. (2024). *holoviz/hvplot: Version 0.11.0* (Version 0.11.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.13851295 
@@ -529,3 +548,6 @@ The pandas development team. (2024). *pandas-dev/pandas: Pandas* (Version 2.2.2)
 
 The scikit-learn developers. (2024). scikit-learn (1.5.2). [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.13749328
 
+Thomas, L. (2022). *The intersectional environmentalist: How to dismantle systems of oppression to protect people + planet*. Little, Brown and Company.
+
+Zimring, C. A. (2015). *Clean and white: A history of environmental racism in the United States.* New York University Press.
