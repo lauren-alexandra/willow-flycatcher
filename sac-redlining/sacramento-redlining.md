@@ -506,7 +506,7 @@ Results: [0.57142857 0.42857143 0.64285714 0.42857143]
 
 The legacy of redlining has siloed communities of color in areas that are more likely to lack green space and be located closer to environmental hazards (Thomas, 2022). The observed environmental injustices imposed in redlined neighborhoods are extensive with impacts ranging across communities: 
 
-- Today, approximately 43% of Black Americans live in urban “heat islands” which contain minimal tree cover and large amounts of exposed asphalt and concrete which retain heat and increase ambient temperature. These neighborhoods are up to 12.6°F warmer than non-redlined neighborhoods. Extreme heat events are also exacerbated in redlined areas, with Black Americans incurring higher rates of heat-related deaths and illnesses than white communities.
+- Today, approximately 43% of Black Americans live in urban "heat islands" which contain minimal tree cover and large amounts of exposed asphalt and concrete which retain heat and increase ambient temperature. These neighborhoods are up to 12.6°F warmer than non-redlined neighborhoods. Extreme heat events are also exacerbated in redlined areas, with Black Americans incurring higher rates of heat-related deaths and illnesses than white communities.
 - Compared to Latinx Americans, white communities are 21% less likely to live in a heat island. Additionally, over 4.3 million Latinx families live in homes without access to air-conditioning. Air pollution is another great concern: about 50% of Latinx individuals live in areas which violate clean air and ozone standards.
 - Urban heat islands magnify impacts of diminished indoor air quality as well which has been attributed to asthma rates in tribal communities that are nearly double the U.S. average. Furthermore, the inequitable distribution of urban green space coincides with other forms of systemic racism and their impacts, such as government displacement of tribal communities and sparse access to safe running water.
 - On average, 50% of Asian American communities have reduced access to shaded green spaces and 32% of Asian Americans live in neighborhoods where heat-retaining surfaces cover more than half of the ground. Moreover, Southeast and South Asian communities have the 4th and 5th highest risk of cancer due to air pollution. Compared to other racial groups, Chinese and Korean Americans have the largest mean cancer risk from air pollution exposure.
@@ -536,7 +536,7 @@ Met Office. (2024). *Cartopy: a cartographic python library with a Matplotlib in
 
 Michney, T. M. (n.d.). How and why the Home Owners' Loan Corporation made its redlining maps. Mapping Inequality. https://dsl.richmond.edu/panorama/redlining/howandwhy
 
-Milman, O. (2018, December 20). Robert Bullard: ‘Environmental justice isn’t just slang, it’s real’. The Guardian. https://www.theguardian.com/commentisfree/2018/dec/20/robert-bullard-interview-environmental-justice-civil-rights-movement
+Milman, O. (2018, December 20). Robert Bullard: "Environmental justice isn’t just slang, it’s real". The Guardian. https://www.theguardian.com/commentisfree/2018/dec/20/robert-bullard-interview-environmental-justice-civil-rights-movement
 
 Python Software Foundation. (2024). *Python* (Version 3.12.6) [Computer software]. https://docs.python.org/release/3.12.6 
 
